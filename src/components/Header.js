@@ -6,7 +6,7 @@ const Header = () => {
         <header className="header">
           <img src={headerLogo} className="header__logo" alt="Логотип" />
         </header>
-    )
-}
+    );
+};
 
 export default Header;
