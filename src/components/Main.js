@@ -1,6 +1,4 @@
 import React from 'react';
-import ImagePopup from './ImagePopup';
-import PopupWithForm from './PopupWithForm';
 
 const Main = () => {
 
@@ -42,16 +40,6 @@ const Main = () => {
             </div>
           </li>
         </template>
-
-        <PopupWithForm title={'Редактировать профиль'} name={'profile'}/>
-
-        <PopupWithForm title={'Новове место'} name={'place'}/>
-
-        <PopupWithForm title={'Вы уверены?'} name={'delete-card'}/>
-
-        <PopupWithForm title={'Обновить аватар?'} name={'edit-avatar'}/>
-
-        <ImagePopup />
 
         {/* <div className="popup popup_type_profile">
           <div className="popup__conteiner">
