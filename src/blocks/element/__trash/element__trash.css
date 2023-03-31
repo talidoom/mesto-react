@@ -9,6 +9,7 @@
   cursor: pointer;
   filter: drop-shadow(2px 4px 6px #808080);
   transition: opacity 0.3s;
+  display: none;
 }
 
 .element__trash:hover {

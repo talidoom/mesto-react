@@ -4,17 +4,25 @@ import Main from "./Main";
 import ImagePopup from './ImagePopup';
 import PopupWithForm from './PopupWithForm';
 import Footer from "./Footer";
+import api from "../utils/Api";
 
 function App() {
+  const [cards, setCards] = React.useState([]);
+
+  React.useEffect(() => {
+    api.getCards().then(card => {
+      setCards(card);
+    });
+  }, [])
+
+  console.log(cards);
+  
   return (
     <div className="page">
         <Header />
 
         <Main 
-        // onEditAvatar={onEditAvatar}
-        // onEditProfile={onEditProfile}
-        // onAddPlace={onAddPlace}
-        // onCardClick={onCardClick}
+        cards={cards}
         />
 
         <Footer />
