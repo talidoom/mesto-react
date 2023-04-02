@@ -9,6 +9,12 @@ import api from "../utils/Api";
 function App() {
   const [cards, setCards] = React.useState([]);
   const [isPopupOpen, setIsPopupOpen] = React.useState(false);
+  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
+  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
+  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
+  const [isTrashPopupOpen, setisTrashPopupOpen] = React.useState(false);
+
+  const [selectedCard, setSelectedCard] = React.useState(null);
 
   React.useEffect(() => {
     api.getCards().then(card => {
@@ -16,10 +22,31 @@ function App() {
     });
   }, [])
 
-  function closeAllPopups() {
-    setIsPopupOpen(false);
+  function handleCardClick(selectedCard) {
+    setSelectedCard(selectedCard);
   }
-  
+
+  function handleEditProfileClick() {
+    setIsEditProfilePopupOpen(true);
+  }
+
+  function handleAddPlaceClick() {
+    setIsAddPlacePopupOpen(true);
+  }
+
+  function handleEditAvatarClick() {
+    setIsEditAvatarPopupOpen(true);
+  }
+
+  function closeAllPopups() {
+    setIsEditProfilePopupOpen(false);
+    setIsEditAvatarPopupOpen(false);
+    setIsAddPlacePopupOpen(false);
+    setisTrashPopupOpen(false);
+    setIsPopupOpen(false);
+    setSelectedCard(null);
+  }
+
   return (
     <div className="page">
         <Header />
@@ -27,7 +54,10 @@ function App() {
         {cards.length > 0 ? 
         <Main 
           cards={cards}
-          onClick={() => setIsPopupOpen(true)}
+          onCardClick={handleCardClick}
+          onEditProfile={handleEditProfileClick}
+          onAddPlace={handleAddPlaceClick}
+          onEditAvatar={handleEditAvatarClick}
         /> 
         : <div className="no-date">Данных нет...</div>}
 
@@ -35,9 +65,9 @@ function App() {
 
         <PopupWithForm 
           title={'Редактировать профиль'} 
-          name={'profile'} 
+          popup={'profile'} 
           submitButtonText={'Сохранить'}
-          isOpen={isPopupOpen}
+          isOpen={isEditProfilePopupOpen}
           setIsOpen={setIsPopupOpen}
           onClose={closeAllPopups}
         > 
@@ -49,9 +79,9 @@ function App() {
 
         <PopupWithForm 
           title={'Новове место'} 
-          name={'place'} 
+          popup={'place'} 
           submitButtonText={'Создать'}
-          isOpen={isPopupOpen}
+          isOpen={isAddPlacePopupOpen}
           setIsOpen={setIsPopupOpen}
           onClose={closeAllPopups}
         > 
@@ -62,19 +92,10 @@ function App() {
         </PopupWithForm>
 
         <PopupWithForm 
-          title={'Вы уверены?'} 
-          name={'delete-card'} 
-          submitButtonText={'Да'}
-          isOpen={isPopupOpen}
-          setIsOpen={setIsPopupOpen}
-          onClose={closeAllPopups}
-        />
-
-        <PopupWithForm 
           title={'Обновить аватар?'} 
-          name={'edit-avatar'} 
+          popup={'edit-avatar'} 
           submitButtonText={'Сохранить'}
-          isOpen={isPopupOpen}
+          isOpen={isEditAvatarPopupOpen}
           setIsOpen={setIsPopupOpen}
           onClose={closeAllPopups}
         > 
@@ -82,7 +103,22 @@ function App() {
           <span className="form__input-error" id="avatar-error"></span>
         </PopupWithForm>
 
-        <ImagePopup />
+        <ImagePopup 
+          popup={'picture'}
+          card={selectedCard}
+          onClose={closeAllPopups}
+          isOpen={isPopupOpen}
+          setIsOpen={setIsPopupOpen}
+        />
+
+        <PopupWithForm 
+          title={'Вы уверены?'} 
+          popup={'delete-card'} 
+          submitButtonText={'Да'}
+          isOpen={isTrashPopupOpen}
+          // setIsOpen={setIsPopupOpen}
+          onClose={closeAllPopups}
+        />
 
     </div>
   );

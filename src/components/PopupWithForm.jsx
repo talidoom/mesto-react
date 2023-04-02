@@ -1,10 +1,10 @@
 import React from 'react';
 
-const PopupWithForm = ({name, title, children, submitButtonText, onClose, isOpen, setIsOpen}) => {
+const PopupWithForm = ({popup, title, children, submitButtonText, onClose, isOpen, setIsOpen}) => {
   const popupIsOpen = isOpen ? 'popup_opened' : '';
 
     return (
-        <div className={`popup popup_type_${name} ${popupIsOpen}`} onClick={() => setIsOpen(false)}>
+        <div className={`popup popup_type_${popup} ${popupIsOpen}`} onClick={() => setIsOpen(false)}>
             <div className="popup__conteiner" onClick={(evt) => evt.stopPropagation()}>
               <button 
                 onClick={onClose}
@@ -13,7 +13,7 @@ const PopupWithForm = ({name, title, children, submitButtonText, onClose, isOpen
                 aria-label="Закрыть" 
               />
               <h2 className="popup__title">{title}</h2>
-              <form className="form" name={name}>
+              <form className="form" name={popup}>
                 {children}
                 <button className="form__button" type="submit">
                   {submitButtonText}
