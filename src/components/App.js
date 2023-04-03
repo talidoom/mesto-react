@@ -8,7 +8,6 @@ import api from "../utils/Api";
 
 function App() {
   const [cards, setCards] = React.useState([]);
-  const [isPopupOpen, setIsPopupOpen] = React.useState(false);
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
@@ -43,7 +42,6 @@ function App() {
     setIsEditAvatarPopupOpen(false);
     setIsAddPlacePopupOpen(false);
     setisTrashPopupOpen(false);
-    setIsPopupOpen(false);
     setSelectedCard(null);
   }
 
@@ -68,12 +66,12 @@ function App() {
           popup={'profile'} 
           submitButtonText={'Сохранить'}
           isOpen={isEditProfilePopupOpen}
-          setIsOpen={setIsPopupOpen}
+          setIsOpen={setIsEditProfilePopupOpen}
           onClose={closeAllPopups}
         > 
-          <input className="form__input form__input_type_name" id="name" name="name" type="text" placeholder="Имя" required minlength="2" maxlength="40" />
+          <input className="form__input form__input_type_name" id="name" name="name" type="text" placeholder="Имя" required minLength="2" maxLength="40" />
           <span className="form__input-error" id="name-error"></span>
-          <input className="form__input form__input_type_about" id="about" name="about" type="text" placeholder="Ваша профессия" required minlength="2" maxlength="200" />
+          <input className="form__input form__input_type_about" id="about" name="about" type="text" placeholder="Ваша профессия" required minLength="2" maxLength="200" />
           <span className="form__input-error" id="about-error"></span>
         </PopupWithForm>
 
@@ -82,10 +80,10 @@ function App() {
           popup={'place'} 
           submitButtonText={'Создать'}
           isOpen={isAddPlacePopupOpen}
-          setIsOpen={setIsPopupOpen}
+          setIsOpen={setIsAddPlacePopupOpen}
           onClose={closeAllPopups}
         > 
-          <input className="form__input form__input_type_placename" id="title" name="name" type="text" placeholder="Название" required minlength="2" maxlength="30" />
+          <input className="form__input form__input_type_placename" id="title" name="name" type="text" placeholder="Название" required minLength="2" maxLength="30" />
           <span className="form__input-error" id="title-error"></span>
           <input className="form__input form__input_type_link" id="link" name="link" type="url" placeholder="Ссылка на картинку" required />
           <span className="form__input-error" id="link-error"></span>
@@ -96,7 +94,7 @@ function App() {
           popup={'edit-avatar'} 
           submitButtonText={'Сохранить'}
           isOpen={isEditAvatarPopupOpen}
-          setIsOpen={setIsPopupOpen}
+          setIsOpen={setIsEditAvatarPopupOpen}
           onClose={closeAllPopups}
         > 
           <input className="form__input form__input_type_avatar" id="avatar" name="avatar" type="url" placeholder="Ссылка на картинку" required />
@@ -107,8 +105,6 @@ function App() {
           popup={'picture'}
           card={selectedCard}
           onClose={closeAllPopups}
-          isOpen={isPopupOpen}
-          setIsOpen={setIsPopupOpen}
         />
 
         <PopupWithForm 
@@ -116,7 +112,7 @@ function App() {
           popup={'delete-card'} 
           submitButtonText={'Да'}
           isOpen={isTrashPopupOpen}
-          // setIsOpen={setIsPopupOpen}
+          setIsOpen={setisTrashPopupOpen}
           onClose={closeAllPopups}
         />
 

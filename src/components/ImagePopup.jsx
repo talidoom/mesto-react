@@ -1,10 +1,9 @@
 import React from 'react';
 
-const ImagePopup = ({card, popup, isOpen, onClose}) => {
-  const popupIsOpen = isOpen ? 'popup_opened' : '';
+const ImagePopup = ({card, popup, isOpen, onClose, setIsOpen}) => {
   
     return (
-        <div className={`popup popup_type_${popup} ${popupIsOpen}`}>
+        <div className={`popup popup_type_${popup} ${card ? 'popup_opened' : ''}`} onClick={() => setIsOpen(false)}>
           <div className="popup__pic-block">
             <button 
               className="popup__close-but" 
@@ -14,10 +13,10 @@ const ImagePopup = ({card, popup, isOpen, onClose}) => {
             />
             <img 
               className="popup__img" 
-              src={card && card.link} 
-              alt={card && card.name}
+              src={card ? card.link : '#'} 
+              alt={card ? card.name : '#'}
             />
-            <p className="popup__description">{card && card.name}</p>
+            <p className="popup__description">{card ? card.name : '#'}</p>
           </div>
         </div>
     );
