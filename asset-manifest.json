@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/static/css/main.368776d3.css",
-    "main.js": "/static/js/main.019b5fbf.js",
-    "static/media/logo-header.svg": "/static/media/logo-header.6129e9de9314a1b289291e0d348b0752.svg",
-    "static/media/like-white.svg": "/static/media/like-white.1ad06e85f169668a1f36.svg",
-    "static/media/Trash.svg": "/static/media/Trash.ce3b64935accf9b8212e.svg",
-    "index.html": "/index.html",
-    "static/media/like-black.svg": "/static/media/like-black.35948469632d0421d697.svg",
-    "static/media/profile-edit.svg": "/static/media/profile-edit.6c7bf05444b9793fdf6e.svg",
-    "static/media/close-button.svg": "/static/media/close-button.039f1f5203f653b4bacd.svg",
-    "static/media/add-button.svg": "/static/media/add-button.bed8c136e13907f5eefb.svg",
-    "main.368776d3.css.map": "/static/css/main.368776d3.css.map",
-    "main.019b5fbf.js.map": "/static/js/main.019b5fbf.js.map"
+    "main.css": "/static/js/main/main.ec5daaf4.js/static/css/main.3f3264b5.css",
+    "main.js": "/static/js/main/main.ec5daaf4.js/static/js/main.ad0cccfd.js",
+    "static/media/logo-header.svg": "/static/js/main/main.ec5daaf4.js/static/media/logo-header.6129e9de9314a1b289291e0d348b0752.svg",
+    "static/media/like-white.svg": "/static/js/main/main.ec5daaf4.js/static/media/like-white.1ad06e85f169668a1f36.svg",
+    "static/media/Trash.svg": "/static/js/main/main.ec5daaf4.js/static/media/Trash.ce3b64935accf9b8212e.svg",
+    "index.html": "/static/js/main/main.ec5daaf4.js/index.html",
+    "static/media/like-black.svg": "/static/js/main/main.ec5daaf4.js/static/media/like-black.35948469632d0421d697.svg",
+    "static/media/profile-edit.svg": "/static/js/main/main.ec5daaf4.js/static/media/profile-edit.6c7bf05444b9793fdf6e.svg",
+    "static/media/close-button.svg": "/static/js/main/main.ec5daaf4.js/static/media/close-button.039f1f5203f653b4bacd.svg",
+    "static/media/add-button.svg": "/static/js/main/main.ec5daaf4.js/static/media/add-button.bed8c136e13907f5eefb.svg",
+    "main.3f3264b5.css.map": "/static/js/main/main.ec5daaf4.js/static/css/main.3f3264b5.css.map",
+    "main.ad0cccfd.js.map": "/static/js/main/main.ec5daaf4.js/static/js/main.ad0cccfd.js.map"
   },
   "entrypoints": [
-    "static/css/main.368776d3.css",
-    "static/js/main.019b5fbf.js"
+    "static/css/main.3f3264b5.css",
+    "static/js/main.ad0cccfd.js"
   ]
 }
