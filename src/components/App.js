@@ -11,7 +11,8 @@ function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
-  const [isTrashPopupOpen, setisTrashPopupOpen] = React.useState(false);
+  const [isTrashPopupOpen, setIsTrashPopupOpen] = React.useState(false);
+  const [isImagePopupOpen, setIsImagePopupOpen] = React.useState(false);
 
   const [selectedCard, setSelectedCard] = React.useState(null);
 
@@ -41,7 +42,8 @@ function App() {
     setIsEditProfilePopupOpen(false);
     setIsEditAvatarPopupOpen(false);
     setIsAddPlacePopupOpen(false);
-    setisTrashPopupOpen(false);
+    setIsTrashPopupOpen(false);
+    setIsImagePopupOpen(false);
     setSelectedCard(null);
   }
 
@@ -112,7 +114,7 @@ function App() {
           popup={'delete-card'} 
           submitButtonText={'Да'}
           isOpen={isTrashPopupOpen}
-          setIsOpen={setisTrashPopupOpen}
+          setIsOpen={setIsTrashPopupOpen}
           onClose={closeAllPopups}
         />
 

@@ -1,14 +1,14 @@
 import React from 'react';
 
-const ImagePopup = ({card, popup, isOpen, onClose, setIsOpen}) => {
+const ImagePopup = ({card, popup, onClose, setIsOpen}) => {
   
     return (
-        <div className={`popup popup_type_${popup} ${card ? 'popup_opened' : ''}`} onClick={() => setIsOpen(false)}>
+        <div className={`popup popup_type_${popup} ${card ? 'popup_opened' : ''}`}>
           <div className="popup__pic-block">
             <button 
               className="popup__close-but" 
               type="button" 
-              aria-label="Закрыть"
+              aria-label="Закрыть" 
               onClick={onClose}
             />
             <img 
