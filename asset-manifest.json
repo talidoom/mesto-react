@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/mesto-react%20/static/css/main.36f0a39e.css",
-    "main.js": "/mesto-react%20/static/js/main.dc240a70.js",
+    "main.js": "/mesto-react%20/static/js/main.c8e71722.js",
     "static/media/logo-header.svg": "/mesto-react%20/static/media/logo-header.6129e9de9314a1b289291e0d348b0752.svg",
     "static/media/like-white.svg": "/mesto-react%20/static/media/like-white.1ad06e85f169668a1f36.svg",
     "static/media/Trash.svg": "/mesto-react%20/static/media/Trash.ce3b64935accf9b8212e.svg",
@@ -11,10 +11,10 @@
     "static/media/close-button.svg": "/mesto-react%20/static/media/close-button.039f1f5203f653b4bacd.svg",
     "static/media/add-button.svg": "/mesto-react%20/static/media/add-button.bed8c136e13907f5eefb.svg",
     "main.36f0a39e.css.map": "/mesto-react%20/static/css/main.36f0a39e.css.map",
-    "main.dc240a70.js.map": "/mesto-react%20/static/js/main.dc240a70.js.map"
+    "main.c8e71722.js.map": "/mesto-react%20/static/js/main.c8e71722.js.map"
   },
   "entrypoints": [
     "static/css/main.36f0a39e.css",
-    "static/js/main.dc240a70.js"
+    "static/js/main.c8e71722.js"
   ]
 }
