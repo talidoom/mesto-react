@@ -2,6 +2,8 @@ import React from "react";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import Header from "./Header";
 import Main from "./Main";
+import EditProfilePopup from "./EditProfilePopup";
+import AddPlacePopup from "./AddPlacePopup";
 import ImagePopup from './ImagePopup';
 import PopupWithForm from './PopupWithForm';
 import Footer from "./Footer";
@@ -89,33 +91,17 @@ function App() {
 
         <Footer />
 
-        <PopupWithForm 
-          title={'Редактировать профиль'} 
-          popup={'profile'} 
-          submitButtonText={'Сохранить'}
+        <EditProfilePopup
           isOpen={isEditProfilePopupOpen}
-          setIsOpen={setIsEditProfilePopupOpen}
           onClose={closeAllPopups}
-        > 
-          <input className="form__input form__input_type_name" id="name" name="name" type="text" placeholder="Имя" required minLength="2" maxLength="40" />
-          <span className="form__input-error" id="name-error"></span>
-          <input className="form__input form__input_type_about" id="about" name="about" type="text" placeholder="Ваша профессия" required minLength="2" maxLength="200" />
-          <span className="form__input-error" id="about-error"></span>
-        </PopupWithForm>
+          // onUpdateUser={handleUpdateUser}
+        />
 
-        <PopupWithForm 
-          title={'Новове место'} 
-          popup={'place'} 
-          submitButtonText={'Создать'}
+        <AddPlacePopup
           isOpen={isAddPlacePopupOpen}
-          setIsOpen={setIsAddPlacePopupOpen}
           onClose={closeAllPopups}
-        > 
-          <input className="form__input form__input_type_placename" id="title" name="name" type="text" placeholder="Название" required minLength="2" maxLength="30" />
-          <span className="form__input-error" id="title-error"></span>
-          <input className="form__input form__input_type_link" id="link" name="link" type="url" placeholder="Ссылка на картинку" required />
-          <span className="form__input-error" id="link-error"></span>
-        </PopupWithForm>
+          // onAddPlace={handleAddCard}
+        />
 
         <PopupWithForm 
           title={'Обновить аватар?'} 

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ImagePopup = ({card, popup, onClose, setIsOpen}) => {
+const ImagePopup = ({card, popup, onClose}) => {
   
     return (
         <div className={`popup popup_type_${popup} ${card ? 'popup_opened' : ''}`}>
