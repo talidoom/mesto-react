@@ -1,4 +1,5 @@
 import React from "react";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import Header from "./Header";
 import Main from "./Main";
 import ImagePopup from './ImagePopup';
@@ -8,12 +9,12 @@ import api from "../utils/Api";
 
 function App() {
   const [cards, setCards] = React.useState([]);
+  const [currentUser, setCurrentUser] = React.useState({});
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
   const [isTrashPopupOpen, setIsTrashPopupOpen] = React.useState(false);
   const [isImagePopupOpen, setIsImagePopupOpen] = React.useState(false);
-
   const [selectedCard, setSelectedCard] = React.useState(null);
 
   React.useEffect(() => {
@@ -47,19 +48,44 @@ function App() {
     setSelectedCard(null);
   }
 
+  function handleCardLike(card) {
+    const isLiked = card.likes.some((i) => i._id === currentUser._id);
+    api.toggleLike(card._id, isLiked)
+      .then((newCard) => {
+        setCards((state) =>
+          state.map((c) => c._id === card._id ? newCard : c)
+        );
+      })
+      .catch((err) => {
+        console.log(`Ошибка ${err}`);
+      });
+  }
+
+  function handleCardDelete(card) {
+    api
+      .deleteCard(card._id)
+      .then(() => {
+        setCards((cards) => cards.filter((item) => item._id !== card._id));
+      })
+      .then(() => closeAllPopups())
+      .catch((err) => {
+        console.log(`Ошибка ${err}`);
+      });
+  }
+
   return (
     <div className="page">
+      <CurrentUserContext.Provider value={currentUser}>
         <Header />
-
-        {cards.length > 0 ? 
         <Main 
           cards={cards}
+          onCardLike={handleCardLike}
+          onCardDelete={handleCardDelete}
           onCardClick={handleCardClick}
           onEditProfile={handleEditProfileClick}
           onAddPlace={handleAddPlaceClick}
           onEditAvatar={handleEditAvatarClick}
-        /> 
-        : <div className="no-date">Данных нет...</div>}
+        />
 
         <Footer />
 
@@ -117,7 +143,7 @@ function App() {
           setIsOpen={setIsTrashPopupOpen}
           onClose={closeAllPopups}
         />
-
+      </CurrentUserContext.Provider>
     </div>
   );
 }
