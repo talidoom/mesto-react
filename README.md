@@ -10,6 +10,7 @@
 
 **GitHub:**
 * [Ссылка на проект в GitHub](https://github.com/talidoom/mesto-react)
+* [Ссылка на макет сайта](https://talidoom.github.io/mesto-react/)
   
 ---
 **Применяемые технолгии:**
