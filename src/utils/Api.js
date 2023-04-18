@@ -4,10 +4,6 @@ class Api {
       this._headers = options.headers;
     }
 
-    getInitialData() {
-      return Promise.all([this.getCards(), this.getUserInfo()]);
-    }
-
     getCards() {
       return fetch(`${this._baseUrl}/cards`, {
         method: 'GET',
@@ -93,7 +89,7 @@ class Api {
         method: 'PATCH',
         headers: this._headers,
         body: JSON.stringify({
-          avatar: avatar,
+          avatar,
         }),
       }).then((res) => {
         if (res.ok) {

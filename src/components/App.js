@@ -4,6 +4,7 @@ import Header from "./Header";
 import Main from "./Main";
 import EditProfilePopup from "./EditProfilePopup";
 import AddPlacePopup from "./AddPlacePopup";
+import EditAvatarPopup from "./EditAvatarPopup";
 import ImagePopup from './ImagePopup';
 import PopupWithForm from './PopupWithForm';
 import Footer from "./Footer";
@@ -15,15 +16,30 @@ function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
-  const [isTrashPopupOpen, setIsTrashPopupOpen] = React.useState(false);
+  // const [isTrashPopupOpen, setIsTrashPopupOpen] = React.useState(false);
   const [isImagePopupOpen, setIsImagePopupOpen] = React.useState(false);
   const [selectedCard, setSelectedCard] = React.useState(null);
 
   React.useEffect(() => {
-    api.getCards().then(card => {
+    api.getCards()
+    .then((card) => {
       setCards(card);
+    }) 
+    .catch((err) => {
+      console.log(`Ошибка ${err}`);
     });
-  }, [])
+  }, []);
+
+  React.useEffect(() => {
+    api
+      .getUserInfo()
+      .then((data) => {
+        setCurrentUser(data);
+      })
+      .catch((err) => {
+        console.log(`Ошибка ${err}`);
+      });
+  }, []);
 
   function handleCardClick(selectedCard) {
     setSelectedCard(selectedCard);
@@ -45,7 +61,7 @@ function App() {
     setIsEditProfilePopupOpen(false);
     setIsEditAvatarPopupOpen(false);
     setIsAddPlacePopupOpen(false);
-    setIsTrashPopupOpen(false);
+    // setIsTrashPopupOpen(false);
     setIsImagePopupOpen(false);
     setSelectedCard(null);
   }
@@ -75,6 +91,42 @@ function App() {
       });
   }
 
+  function handleUpdateAvatar(data) {
+    api
+      .setUserAvatar(data.avatar)
+      .then((serverData) => {
+        setCurrentUser(serverData);
+        closeAllPopups();
+      })
+      .catch((err) => {
+        console.log(`Ошибка ${err}`);
+      });
+  }
+
+  function handleUpdateUser(data) {
+    api
+      .setUserInfo(data.name, data.about)
+      .then((serverData) => {
+        setCurrentUser(serverData);
+        closeAllPopups();
+      })
+      .catch((err) => {
+        console.log(`Ошибка ${err}`);
+      });
+  }
+
+  function handleAddCard(card) {
+    api
+      .createCard(card.name, card.link)
+      .then((newCard) => {
+        setCards([newCard, ...cards]);
+        closeAllPopups();
+      })
+      .catch((err) => {
+        console.log(`Ошибка ${err}`);
+      });
+  }
+
   return (
     <div className="page">
       <CurrentUserContext.Provider value={currentUser}>
@@ -94,16 +146,16 @@ function App() {
         <EditProfilePopup
           isOpen={isEditProfilePopupOpen}
           onClose={closeAllPopups}
-          // onUpdateUser={handleUpdateUser}
+          onUpdateUser={handleUpdateUser}
         />
 
         <AddPlacePopup
           isOpen={isAddPlacePopupOpen}
           onClose={closeAllPopups}
-          // onAddPlace={handleAddCard}
+          onAddPlace={handleAddCard}
         />
 
-        <PopupWithForm 
+        {/* <PopupWithForm 
           title={'Обновить аватар?'} 
           popup={'edit-avatar'} 
           submitButtonText={'Сохранить'}
@@ -113,7 +165,13 @@ function App() {
         > 
           <input className="form__input form__input_type_avatar" id="avatar" name="avatar" type="url" placeholder="Ссылка на картинку" required />
           <span className="form__input-error" id="avatar-error"></span>
-        </PopupWithForm>
+        </PopupWithForm> */}
+
+          <EditAvatarPopup
+            isOpen={isEditAvatarPopupOpen}
+            onClose={closeAllPopups}
+            onUpdateAvatar={handleUpdateAvatar}
+          />
 
         <ImagePopup 
           popup={'picture'}
@@ -125,10 +183,11 @@ function App() {
           title={'Вы уверены?'} 
           popup={'delete-card'} 
           submitButtonText={'Да'}
-          isOpen={isTrashPopupOpen}
-          setIsOpen={setIsTrashPopupOpen}
+          // isOpen={isTrashPopupOpen}
+          // setIsOpen={setIsTrashPopupOpen}
           onClose={closeAllPopups}
         />
+        
       </CurrentUserContext.Provider>
     </div>
   );

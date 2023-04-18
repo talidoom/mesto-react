@@ -44,7 +44,7 @@ const Main = ({cards,onCardLike, onCardDelete, onCardClick, onEditProfile, onAdd
 
           <section className="elements">
             <ul className="elements__list" aria-label="Фотографии путешествий">
-            {cards.map(card => {
+            {cards.map((card) => {
                 return (
                 <Card 
                   card={card} 
