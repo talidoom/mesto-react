@@ -92,7 +92,6 @@ function App() {
   }
 
   function handleUpdateAvatar(data) {
-    console.log(data)
     api
       .setUserAvatar(data.avatar)
       .then((serverData) => {
