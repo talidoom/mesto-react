@@ -18,7 +18,6 @@ const PopupWithForm = ({popup, title, children, submitButtonText, onClose, isOpe
                 <button 
                   className="form__button" 
                   type="submit"
-                  onClick={onClose}
                 >
                   {submitButtonText}
                 </button>

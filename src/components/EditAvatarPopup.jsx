@@ -4,12 +4,11 @@ import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 const EditAvatarPopup = (props) => {
     const { isOpen, onClose, onUpdateAvatar } = props;
-    // const currentUser = React.useContext(CurrentUserContext);
     const avatarRef = React.useRef();
 
-    // React.useEffect(() => {
-    //     avatarRef.current.value = '';
-    //   }, [isOpen]);
+    React.useEffect(() => {
+        avatarRef.current.value = '';
+      }, [isOpen]);
         
     
     function handleSubmit(e) {
@@ -17,7 +16,6 @@ const EditAvatarPopup = (props) => {
         onUpdateAvatar({
             avatar: avatarRef.current.value,
         });
-        avatarRef.current.value = '';
     }
 
     return (

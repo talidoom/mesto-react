@@ -4,28 +4,25 @@ class Api {
       this._headers = options.headers;
     }
 
+  _checkResponse(res) {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Ошибка ${res.status}`);
+  }
+
     getCards() {
       return fetch(`${this._baseUrl}/cards`, {
         method: 'GET',
         headers: this._headers,
-      }).then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Ошибка ${res.status}`);
-      });
+      }).then(this._checkResponse);
     }
   
     getUserInfo() {
       return fetch(`${this._baseUrl}/users/me`, {
         method: 'GET',
         headers: this._headers,
-      }).then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Ошибка ${res.status}`);
-      });
+      }).then(this._checkResponse);
     }
   
     setUserInfo(name, status) {
@@ -36,12 +33,7 @@ class Api {
           name: name,
           about: status,
         }),
-      }).then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Ошибка ${res.status}`);
-      });
+      }).then(this._checkResponse);
     }
   
     createCard(name, link) {
@@ -52,36 +44,21 @@ class Api {
           name: name,
           link: link,
         }),
-      }).then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Ошибка ${res.status}`);
-      });
+      }).then(this._checkResponse);
     }
   
     deleteCard(id) {
       return fetch(`${this._baseUrl}/cards/${id}`, {
         method: 'DELETE',
         headers: this._headers,
-      }).then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Ошибка ${res.status}`);
-      });
+      }).then(this._checkResponse);
     }
   
     toggleLike(id, like) {
       return fetch(`${this._baseUrl}/cards/likes/${id}`, {
         method: like ? 'DELETE' : 'PUT',
         headers: this._headers,
-      }).then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Ошибка ${res.status}`);
-      });
+      }).then(this._checkResponse);
     }
   
     setUserAvatar(avatar) {
@@ -91,12 +68,7 @@ class Api {
         body: JSON.stringify({
           avatar,
         }),
-      }).then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Ошибка ${res.status}`);
-      });
+      }).then(this._checkResponse);
     }
   }
   

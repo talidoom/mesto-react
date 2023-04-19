@@ -3,7 +3,7 @@ import React from 'react';
 const Footer = () => {
     return (
         <footer className="footer" aria-label="Копирайт">
-          <p className="footer__copyright">&copy; 2020 Mesto Russia</p>
+          <p className="footer__copyright">&copy; {new Date().getFullYear()} Mesto Russia</p>
         </footer>
     );
 };

@@ -35,35 +35,34 @@ function AddPlacePopup(props) {
       onClose={onClose}
       onSubmit={handleSubmit}
       submitButtonText="Создать"
-      children={
-        <>
-          <input
-            value={name}
-            onChange={handleNameChange}
-            type="text"
-            className="form__input form__input_type_placename"
-            placeholder="Название"
-            id="title"
-            name="name"
-            minLength="2"
-            maxLength="30"
-            required
-          />
-          <span className="form__input-error" id="title-error"></span>
-          <input
-            value={link}
-            onChange={handleLinkChange}
-            type="url"
-            className="form__input form__input_type_link"
-            placeholder="Ссылка на картинку"
-            id="link"
-            name="link"
-            required
-          />
-          <span className="form__input-error" id="avatar-error"></span>
-        </>
-      }
-    />
+    >
+      <>
+        <input
+          value={name}
+          onChange={handleNameChange}
+          type="text"
+          className="form__input form__input_type_placename"
+          placeholder="Название"
+          id="title"
+          name="name"
+          minLength="2"
+          maxLength="30"
+          required
+        />
+        <span className="form__input-error" id="title-error"></span>
+        <input
+          value={link}
+          onChange={handleLinkChange}
+          type="url"
+          className="form__input form__input_type_link"
+          placeholder="Ссылка на картинку"
+          id="link"
+          name="link"
+          required
+        />
+        <span className="form__input-error" id="avatar-error"></span>
+      </>
+    </PopupWithForm>
   );
 }
 

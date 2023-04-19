@@ -40,7 +40,7 @@ const EditProfilePopup = (props) => {
             children={
         <>
           <input
-            value={name}
+            value={name || ''}
             onChange={handleChangeName}
             type="text"
             className="form__input form__input_type_name"
@@ -53,7 +53,7 @@ const EditProfilePopup = (props) => {
           />
           <span className="form__input-error" id="name-error"></span>
           <input
-            value={description}
+            value={description || ''}
             onChange={handleChangeDescription}
             type="text"
             className="form__input form__input_type_about"
