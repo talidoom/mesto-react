@@ -16,9 +16,9 @@ function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
-  // const [isTrashPopupOpen, setIsTrashPopupOpen] = React.useState(false);
   const [isImagePopupOpen, setIsImagePopupOpen] = React.useState(false);
   const [selectedCard, setSelectedCard] = React.useState(null);
+  const isOpen = isEditAvatarPopupOpen || isEditProfilePopupOpen || isAddPlacePopupOpen || selectedCard
 
   React.useEffect(() => {
     api.getCards()
@@ -41,6 +41,21 @@ function App() {
       });
   }, []);
 
+  React.useEffect(() => {
+    function closeByEscape(evt) {
+      if(evt.key === 'Escape') {
+        closeAllPopups();
+      }
+    }
+    if(isOpen) { // навешиваем только при открытии
+      document.addEventListener('keydown', closeByEscape);
+      return () => {
+        document.removeEventListener('keydown', closeByEscape);
+      }
+    }
+  }, [isOpen]) 
+
+
   function handleCardClick(selectedCard) {
     setSelectedCard(selectedCard);
   }
@@ -61,7 +76,6 @@ function App() {
     setIsEditProfilePopupOpen(false);
     setIsEditAvatarPopupOpen(false);
     setIsAddPlacePopupOpen(false);
-    // setIsTrashPopupOpen(false);
     setIsImagePopupOpen(false);
     setSelectedCard(null);
   }
@@ -155,18 +169,6 @@ function App() {
           onAddPlace={handleAddCard}
         />
 
-        {/* <PopupWithForm 
-          title={'Обновить аватар?'} 
-          popup={'edit-avatar'} 
-          submitButtonText={'Сохранить'}
-          isOpen={isEditAvatarPopupOpen}
-          setIsOpen={setIsEditAvatarPopupOpen}
-          onClose={closeAllPopups}
-        > 
-          <input className="form__input form__input_type_avatar" id="avatar" name="avatar" type="url" placeholder="Ссылка на картинку" required />
-          <span className="form__input-error" id="avatar-error"></span>
-        </PopupWithForm> */}
-
           <EditAvatarPopup
             isOpen={isEditAvatarPopupOpen}
             onClose={closeAllPopups}
@@ -183,8 +185,6 @@ function App() {
           title={'Вы уверены?'} 
           popup={'delete-card'} 
           submitButtonText={'Да'}
-          // isOpen={isTrashPopupOpen}
-          // setIsOpen={setIsTrashPopupOpen}
           onClose={closeAllPopups}
         />
         
